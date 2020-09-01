@@ -1,9 +1,29 @@
 <?php # handle registration form
 
+    # create errors array
+    $errors = [];
+
     #be sure user clicked submit button
     if(array_key_exists('register', $_POST)) {
-        var_dump($_POST);
+        
+        // validate firstname field
+        if(empty($_POST['fn'])) {
+            $errors['fn'] = 'Please enter a first name';
+        }
+
+        if(empty($_POST['ln'])) {
+            $errors['ln'] = 'Please enter a last name';
+        }
+
+        if(empty($_POST['e'])) {
+            $errors['e'] = 'Please enter an email';
+        }
+
+        if(empty($_POST['pass'])) {
+            $errors['pass'] = 'Please enter a password';
+        }
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +39,11 @@
         <form method="POST" action="">
             <div>
                 <label>First Name</label><br />
+                <?php
+                    if(array_key_exists('fn', $errors)) {
+                        echo '<p>'.$errors['fn'].'<p>';
+                    }
+                ?>
                 <input type="text" name="fn"/>
             </div>
 
