@@ -23,6 +23,13 @@
             $errors['pass'] = 'Please enter a password';
         }
     }
+
+    // put error function here
+    function display_error($field, $_err) {
+        if(array_key_exists($field, $_err))  {
+            echo '<p>' .$_err[$field].'</p>';
+        }
+    }
     
 ?>
 
@@ -39,26 +46,25 @@
         <form method="POST" action="">
             <div>
                 <label>First Name</label><br />
-                <?php
-                    if(array_key_exists('fn', $errors)) {
-                        echo '<p>'.$errors['fn'].'<p>';
-                    }
-                ?>
+                <?php display_error('fn', $errors); ?>
                 <input type="text" name="fn"/>
             </div>
 
             <div>
                 <label>Last Name</label><br />
+                <?php display_error('ln', $errors); ?>
                 <input type="text" name="ln"/>
             </div>
 
             <div>
                 <label>Email</label><br />
+                <?php display_error('e', $errors) ?>
                 <input type="email" name="e"/>
             </div>
 
             <div>
                 <label>Password</label><br />
+                <?php display_error('pass', $errors); ?>
                 <input type="password" name="pass" />
             </div>
 
